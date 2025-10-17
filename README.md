@@ -1,69 +1,46 @@
-# React + TypeScript + Vite
+# PWA - Encuesta Musical 🎧
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una Progressive Web App (PWA) avanzada desarrollada como parte de la evaluación de la asignatura. La aplicación consiste en una encuesta de gustos musicales que implementa funcionalidades modernas para garantizar una experiencia de usuario robusta, incluso sin conexión a internet.
 
-Currently, two official plugins are available:
+**URL de la PWA desplegada:** [Link a tu PWA en Vercel o Netlify]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Características Principales
 
-## Expanding the ESLint configuration
+- **Diseño Personalizado:** Interfaz con un tema "Blood Sunset Spotify", con un fondo estático y una paleta de colores inspirada en la música.
+- **Funcionalidad Offline-First:** La aplicación es 100% funcional sin conexión a internet.
+- **Almacenamiento Local:** Utiliza **IndexedDB** para guardar las respuestas de la encuesta de forma segura en el navegador cuando no hay conexión.
+- **Sincronización en Segundo Plano:** Implementa la **Background Sync API** para detectar cuándo el dispositivo recupera la conexión y enviar automáticamente los datos guardados a la base de datos en la nube.
+- **Base de Datos en la Nube:** Usa **Firebase Firestore** como backend para almacenar permanentemente todas las respuestas.
+- **Notificaciones Push:** Notifica al usuario con un mensaje claro y persistente una vez que sus datos han sido sincronizados con éxito.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tecnologías Utilizadas
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend:** React, Vite, TypeScript
+- **Base de Datos (Nube):** Firebase Firestore
+- **Almacenamiento Local:** IndexedDB (con la librería `idb`)
+- **Service Worker:** Workbox (integrado con `vite-plugin-pwa`)
+- **Notificaciones:** Web Push API con claves VAPID
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Cómo Ejecutar el Proyecto Localmente
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/yoel11705/entornospwa.git)
+    ```
+2.  **Instalar dependencias:**
+    ```bash
+    cd [nombre-de-la-carpeta]
+    npm install
+    ```
+3.  **Para desarrollo (con recarga en vivo):**
+    ```bash
+    npm run dev
+    ```
+4.  **Para probar la versión de producción (necesario para el Service Worker):**
+    ```bash
+    # 1. Construir el proyecto
+    npm run build
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    # 2. Previsualizar la construcción
+    npm run preview
+    ```
