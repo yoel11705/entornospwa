@@ -40,7 +40,7 @@ function App() {
     try {
       const swRegistration = await navigator.serviceWorker.ready;
       const permission = await Notification.requestPermission();
-      setNotificationPermission(permission); // Actualizamos el estado del permiso
+      setNotificationPermission(permission); 
 
       if (permission !== 'granted') {
         throw new Error('Permiso para notificaciones no concedido.');
